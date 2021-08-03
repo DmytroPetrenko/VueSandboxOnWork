@@ -8,7 +8,10 @@
 		label-width="120px"
 	>
 		<el-form-item label="Fullname">
-			<el-input :placeholder="fullNamePH" v-model="form.fullName"></el-input>
+			<el-input
+				:placeholder="fullNamePH"
+				v-model.trim="form.fullName"
+			></el-input>
 		</el-form-item>
 		<el-form-item label="Your birth date">
 			<el-date-picker
@@ -75,7 +78,7 @@ export default {
 	},
 	methods: {
 		onSubmit() {
-			if (this.form.fullName.trim()) {
+			if (this.form.fullName) {
 				this.fullNamePH = this.form.fullName
 
 				const names = this.form.fullName.split(" ")

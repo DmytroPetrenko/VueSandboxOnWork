@@ -2,12 +2,15 @@
 	<div id="app">
 		<UsersList v-bind:users="users" />
 		<AddNewUser @add-new-user="addNewUser" />
+		<CustomInput v-model="customInputText" />
+		{{ customInputText }}
 	</div>
 </template>
 
 <script>
 import UsersList from "@/components/UsersList"
 import AddNewUser from "@/components/AddNewUser"
+import CustomInput from "@/components/CustomInput"
 
 export default {
 	name: "App",
@@ -39,11 +42,13 @@ export default {
 					position: "Designer",
 				},
 			],
+			customInputText: "",
 		}
 	},
 	components: {
 		UsersList,
 		AddNewUser,
+		CustomInput,
 	},
 	methods: {
 		addNewUser(newUser) {
