@@ -1,7 +1,12 @@
 <template>
 	<ul>
 		<transition-group name="userList">
-			<UserItem v-bind:user="user" :key="user.id" v-for="user in users" />
+			<UserItem
+				v-bind:user="user"
+				:key="user.id"
+				v-for="user in users"
+				@setCurrentUser="setCurrentUser"
+			/>
 		</transition-group>
 	</ul>
 </template>
@@ -11,6 +16,11 @@ import UserItem from "@/components/UserItem"
 export default {
 	props: ["users"],
 	components: { UserItem },
+	methods: {
+		setCurrentUser(user) {
+			this.$emit(`setCurrentUser`, user)
+		},
+	},
 }
 </script>
 

@@ -1,6 +1,9 @@
 <template>
 	<div id="app">
-		<UsersList v-bind:users="users" />
+		<UsersList v-bind:users="users" @setCurrentUser="setCurrentUser" />
+		<div v-if="currentUser">
+			<UserInformation v-bind:user="currentUser" />
+		</div>
 		<AddNewUser @add-new-user="addNewUser" />
 		<CustomInput v-model="customInputText" />
 		{{ customInputText }}
@@ -43,16 +46,22 @@ export default {
 				},
 			],
 			customInputText: "",
+			currentUser: null,
+			areUserInformationNeeded: false,
 		}
 	},
 	components: {
 		UsersList,
 		AddNewUser,
 		CustomInput,
+		UserInformation: () => import("@/components/UserInformation"),
 	},
 	methods: {
 		addNewUser(newUser) {
 			this.users.push(newUser)
+		},
+		setCurrentUser(user) {
+			this.currentUser = user
 		},
 	},
 }
