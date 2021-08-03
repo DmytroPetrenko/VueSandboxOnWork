@@ -1,6 +1,8 @@
 <template>
 	<ul>
-		<UserItem v-bind:user="user" :key="user.id" v-for="user in users" />
+		<transition-group name="userList">
+			<UserItem v-bind:user="user" :key="user.id" v-for="user in users" />
+		</transition-group>
 	</ul>
 </template>
 
@@ -15,5 +17,12 @@ export default {
 <style>
 ul {
 	list-style-type: none;
+}
+.userList-enter-active {
+	transition: all 1s;
+}
+.userList-enter /* .userListleave-active до версии 2.1.8 */ {
+	opacity: 0;
+	transform: translateY(30px);
 }
 </style>
