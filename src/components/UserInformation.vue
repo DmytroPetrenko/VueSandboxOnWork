@@ -18,10 +18,11 @@ export default {
 }
 
 .item {
-	padding: 18px 0;
+	padding: 5px 0;
 }
 
 .box-card {
 	width: 480px;
+	margin-bottom: 15px;
 }
 </style>

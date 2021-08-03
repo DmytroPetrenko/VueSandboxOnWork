@@ -3,6 +3,7 @@
 		<transition-group name="userList">
 			<UserItem
 				v-bind:user="user"
+				:activeId="activeId"
 				:key="user.id"
 				v-for="user in users"
 				@setCurrentUser="setCurrentUser"
@@ -14,7 +15,7 @@
 <script>
 import UserItem from "@/components/UserItem"
 export default {
-	props: ["users"],
+	props: ["users", "activeId"],
 	components: { UserItem },
 	methods: {
 		setCurrentUser(user) {

@@ -1,8 +1,14 @@
 <template>
 	<div id="app">
-		<UsersList v-bind:users="users" @setCurrentUser="setCurrentUser" />
-		<div v-if="currentUser">
-			<UserInformation v-bind:user="currentUser" />
+		<div id="user-wrapper">
+			<UsersList
+				v-bind:users="users"
+				:activeId="activeId"
+				@setCurrentUser="setCurrentUser"
+			/>
+			<div v-if="currentUser">
+				<UserInformation v-bind:user="currentUser" />
+			</div>
 		</div>
 		<AddNewUser @add-new-user="addNewUser" />
 		<CustomInput v-model="customInputText" />
@@ -50,6 +56,11 @@ export default {
 			areUserInformationNeeded: false,
 		}
 	},
+	computed: {
+		activeId: function() {
+			return this.currentUser ? this.currentUser.id : null
+		},
+	},
 	components: {
 		UsersList,
 		AddNewUser,
@@ -74,5 +85,9 @@ export default {
 	-moz-osx-font-smoothing: grayscale;
 	color: #2c3e50;
 	margin-top: 60px;
+}
+#user-wrapper {
+	display: flex;
+	justify-content: space-evenly;
 }
 </style>
