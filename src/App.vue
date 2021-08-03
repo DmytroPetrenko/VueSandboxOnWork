@@ -1,12 +1,14 @@
 <template>
 	<div id="app">
-		<ul>
-			<li :key="user.id" v-for="user in users">{{ user.firstName }}</li>
-		</ul>
+		<UsersList v-bind:users="users" />
+		<AddNewUser @add-new-user="addNewUser" />
 	</div>
 </template>
 
 <script>
+import UsersList from "@/components/UsersList"
+import AddNewUser from "@/components/AddNewUser"
+
 export default {
 	name: "App",
 	data() {
@@ -15,31 +17,39 @@ export default {
 				{
 					id: 1,
 					firstName: "Dmytro",
-					secondName: "Petrenko",
+					lastName: "Petrenko",
 					position: "Trainee Vue Js Developer",
 				},
 				{
 					id: 2,
 					firstName: "Valeriy",
-					secondName: "Nosenko",
+					lastName: "Nosenko",
 					position: "Trainee React Js Developer",
 				},
 				{
 					id: 3,
 					firstName: "Andriy",
-					secondName: "Parkhomenko",
+					lastName: "Parkhomenko",
 					position: "Senior Vue Js Developer",
 				},
 				{
 					id: 4,
 					firstName: "Artemon",
-					secondName: "Bulangery",
+					lastName: "Bulangery",
 					position: "Designer",
 				},
 			],
 		}
 	},
-	components: {},
+	components: {
+		UsersList,
+		AddNewUser,
+	},
+	methods: {
+		addNewUser(newUser) {
+			this.users.push(newUser)
+		},
+	},
 }
 </script>
 
@@ -48,7 +58,6 @@ export default {
 	font-family: Avenir, Helvetica, Arial, sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	text-align: center;
 	color: #2c3e50;
 	margin-top: 60px;
 }
