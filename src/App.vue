@@ -1,6 +1,7 @@
 <template>
 	<div id="app">
 		<div id="user-wrapper">
+			<UsersCounter />
 			<UsersList
 				v-bind:users="users"
 				:activeId="activeId"
@@ -20,6 +21,8 @@
 import UsersList from "@/components/UsersList"
 import AddNewUser from "@/components/AddNewUser"
 import CustomInput from "@/components/CustomInput"
+import { eventBus } from "@/main"
+import UsersCounter from "@/components/UsersCounter"
 
 export default {
 	name: "App",
@@ -77,10 +80,13 @@ export default {
 		AddNewUser,
 		CustomInput,
 		UserInformation: () => import("@/components/UserInformation"),
+		UsersCounter,
 	},
 	methods: {
 		addNewUser(newUser) {
 			this.users.push(newUser)
+
+			eventBus.$emit("changeUsersNumber", this.users.length)
 		},
 		setCurrentUser(user) {
 			this.currentUser = user
