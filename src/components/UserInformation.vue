@@ -3,9 +3,11 @@
 		<div v-for="(value, key) in user" :key="value" class="text item">
 			<p>
 				{{ key + ": " }}
-				<span contenteditable="true" @blur="onChange($event, key)">{{
-					value
-				}}</span>
+				<span
+					:contenteditable="key === `id` ? false : true"
+					@blur="onChange($event, key)"
+					>{{ value }}</span
+				>
 			</p>
 		</div>
 	</el-card>
@@ -17,6 +19,18 @@ export default {
 	methods: {
 		onChange(e, key) {
 			this.user[key] = e.target.innerText
+		},
+	},
+	watch: {
+		user: {
+			handler: function(value) {
+				this.$notify({
+					title: "Success",
+					message: `You successfully change property for ${value.firstName}`,
+					type: "success",
+				})
+			},
+			deep: true,
 		},
 	},
 }
