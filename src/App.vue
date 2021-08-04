@@ -61,6 +61,17 @@ export default {
 			return this.currentUser ? this.currentUser.id : null
 		},
 	},
+	watch: {
+		users: function(val) {
+			this.$notify({
+				title: "Success",
+				message: `You successfully add ${val[val.length - 1].firstName} ${
+					val[val.length - 1].lastName
+				}`,
+				type: "success",
+			})
+		},
+	},
 	components: {
 		UsersList,
 		AddNewUser,
