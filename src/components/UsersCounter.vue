@@ -14,5 +14,8 @@ export default {
 	created() {
 		eventBus.$on("changeUsersNumber", (data) => (this.usersInDB = data))
 	},
+	beforeDestroy() {
+		eventBus.$off("changeUsersNumber")
+	},
 }
 </script>
