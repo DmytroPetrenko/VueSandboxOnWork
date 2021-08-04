@@ -23,12 +23,14 @@ export default {
 	},
 	watch: {
 		user: {
-			handler: function(value) {
-				this.$notify({
-					title: "Success",
-					message: `You successfully change property for ${value.firstName}`,
-					type: "success",
-				})
+			handler: function(value, oldValue) {
+				if (value == oldValue) {
+					this.$notify({
+						title: "Success",
+						message: `You successfully change property for ${value.firstName}`,
+						type: "success",
+					})
+				}
 			},
 			deep: true,
 		},
