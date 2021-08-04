@@ -1,7 +1,12 @@
 <template>
 	<el-card class="box-card">
 		<div v-for="(value, key) in user" :key="value" class="text item">
-			{{ key + ": " + value }}
+			<p>
+				{{ key + ": " }}
+				<span contenteditable="true" @blur="onChange($event, key)">{{
+					value
+				}}</span>
+			</p>
 		</div>
 	</el-card>
 </template>
@@ -9,6 +14,11 @@
 <script>
 export default {
 	props: [`user`],
+	methods: {
+		onChange(e, key) {
+			this.user[key] = e.target.innerText
+		},
+	},
 }
 </script>
 
