@@ -18,7 +18,7 @@
 </template>
 
 <script>
-// Change for change
+// Change for change 2
 import UsersList from "@/components/UsersList"
 import AddNewUser from "@/components/AddNewUser"
 import CustomInput from "@/components/CustomInput"
